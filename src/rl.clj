@@ -3,9 +3,19 @@
     (javax.swing JFrame)
     (java.awt TextArea Font Color Toolkit)
     (java.awt.event ActionListener KeyListener KeyEvent))
+  (:require random))
+
+(let [rand (random/with-seed 12)]
+  (dotimes [x 10]
+    (println "Hello!" (random/randomInt rand 20 30)))
+  )
+(let [rand (random/with-seed 12)]
+  (dotimes [x 10]
+    (println "Hello!" (random/randomInt rand 20 30)))
   )
 
-(println "Hello!" )
+(defstruct position :x :y)
+(defstruct tile :position :wall)
 
 (defn handle-input [#^KeyEvent event]
   (println (.getKeyCode event) (.getKeyChar event)))
@@ -15,7 +25,7 @@
          col 0
          cols cols]
     (if (> cols 0)
-      (recur (str line ".") (inc col) (dec cols))
+      (recur (str line (mapView row col)) (inc col) (dec cols))
       (str line "\n"))))
 
 (defn render-map-as-string [mapView rows cols]
@@ -35,9 +45,11 @@
 ;      (.appendText textArea "\n"))
 ;    (.setText textArea view)))
 
-(defn map-view [width height]
+(defn map-view [seed width height]
+  (fn [row col]
+    ;(str (rem (+ row col) 10))
 
-  )
+    ))
 
 (defn input-listener []
   (proxy [ActionListener KeyListener] []
@@ -48,8 +60,9 @@
 
 (let [frame (JFrame. "RL")
       textArea (TextArea. "Hubba!")
-      view-rows 30
-      view-cols 24]
+      view-rows 80
+      view-cols 24
+      seed 4098]
   (doto frame
     (.setSize 640 480)
     (.setDefaultCloseOperation JFrame/EXIT_ON_CLOSE)
@@ -67,6 +80,6 @@
     (.setBackground (Color/BLACK))
     )
 
-  (display-grid textArea (map-view 100 100))
+  (display-grid textArea (map-view seed 100 100))
 
   )
