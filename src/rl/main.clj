@@ -59,28 +59,37 @@
     (keyReleased [e])
     (keyTyped [e])))
 
-(let [frame (JFrame. "RL")
-      textArea (TextArea. "Hubba!")
-      view-rows 80
-      view-cols 24
-      seed 4098]
-  (doto frame
-    (.setSize 640 480)
-    (.setDefaultCloseOperation JFrame/EXIT_ON_CLOSE)
-    (.setResizable false)
-    (.add textArea)
-    (.addKeyListener (input-listener))
-    (.requestFocus)
-    (.setVisible true))
-  (doto textArea
-    (.setFont (Font. "Monospaced" (Font/PLAIN) 11))
-    (.setColumns view-rows)
-    (.setRows view-cols)
-    (.setFocusable false)
-    (.setForeground (Color/GREEN))
-    (.setBackground (Color/BLACK))
-    )
+(defn main []
+  (let [frame (JFrame. "RL")
+        textArea (TextArea. "Hubba!")
+        view-rows 80
+        view-cols 24
+        seed 4098]
+    (doto frame
+      (.setSize 640 480)
+      (.setDefaultCloseOperation JFrame/EXIT_ON_CLOSE)
+      (.setResizable false)
+      (.add textArea)
+      (.addKeyListener (input-listener))
+      (.requestFocus)
+      (.setVisible true))
+    (doto textArea
+      (.setFont (Font. "Monospaced" (Font/PLAIN) 11))
+      (.setColumns view-rows)
+      (.setRows view-cols)
+      (.setFocusable false)
+      (.setForeground (Color/GREEN))
+      (.setBackground (Color/BLACK))
+      )
 
-  (display-grid textArea (map-view seed 100 100))
+    (display-grid textArea (map-view seed 100 100))
 
-  )
+    ))
+
+; Only run the application if this is being run as a script,
+; not if loaded in a REPL with load-file.
+; When run as a script, the path to this file
+; will be a command-line argument.
+(if *command-line-args*
+  (prn *command-line-args*)
+  (main))
