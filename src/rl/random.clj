@@ -1,4 +1,4 @@
-(ns random)
+(ns rl.random)
 
 (import java.util.Random)
 
@@ -11,3 +11,4 @@
 (defn randomInt [#^Random random min max]
   "Generate a random integer number between min and max, inclusive."
   (+ (.nextInt random (+ (- max min) 1)) min))
+

@@ -1,9 +1,10 @@
-(ns rl
+(ns rl.main
   (:import
     (javax.swing JFrame)
-    (java.awt TextArea Font Color Toolkit)
+    (java.awt TextArea Font Color)
     (java.awt.event ActionListener KeyListener KeyEvent))
-  (:require random))
+  (:require
+    (rl [random :as random])))
 
 (let [rand (random/with-seed 12)]
   (dotimes [x 10]
