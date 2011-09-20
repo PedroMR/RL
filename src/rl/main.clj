@@ -4,16 +4,8 @@
     (java.awt TextArea Font Color)
     (java.awt.event ActionListener KeyListener KeyEvent))
   (:require
-    (rl [random :as random])))
-
-(let [rand (random/with-seed 12)]
-  (dotimes [x 10]
-    (println "Hello!" (random/randomInt rand 20 30)))
-  )
-(let [rand (random/with-seed 12)]
-  (dotimes [x 10]
-    (println "Hello!" (random/randomInt rand 20 30)))
-  )
+    (rl random map))
+  (:use clojure.test))
 
 (defstruct position :x :y)
 (defstruct tile :position :wall)
@@ -86,10 +78,12 @@
 
     ))
 
-; Only run the application if this is being run as a script,
-; not if loaded in a REPL with load-file.
-; When run as a script, the path to this file
-; will be a command-line argument.
-(if *command-line-args*
-  (prn *command-line-args*)
-  (main))
+
+(defn print-help []
+  (println "Use 'play' as a command line argument to run the game."))
+
+(rl.random/without-seed)
+
+(if (some #{"play"} *command-line-args*)
+  (main)
+  (print-help))
