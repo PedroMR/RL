@@ -13,12 +13,17 @@
 (defn handle-input [#^KeyEvent event]
   (println (.getKeyCode event) (.getKeyChar event)))
 
+(defn get-char-for-pos [mapView row col]
+  (if-not (.walkable? mapView row col)
+    "#"
+    "."))
+
 (defn render-row-as-string [mapView row cols]
   (loop [line ""
          col 0
          cols cols]
     (if (> cols 0)
-      (recur (str line (mapView row col)) (inc col) (dec cols))
+      (recur (str line (get-char-for-pos mapView row col)) (inc col) (dec cols))
       (str line "\n"))))
 
 (defn render-map-as-string [mapView rows cols]
@@ -29,7 +34,7 @@
       (recur (str text (render-row-as-string mapView row cols)) (inc row) (dec rows))
       text)))
 
-(defn display-grid [#^TextArea textArea mapView]
+(defn display-grid [#^TextArea textArea #^rl.map.MapView mapView]
   (.setText textArea (.toString (render-map-as-string mapView (.getRows textArea) (.getColumns textArea)))))
 ;  (let [view ""]
 ;    (dotimes [y (.getRows textArea)]
@@ -51,12 +56,17 @@
     (keyReleased [e])
     (keyTyped [e])))
 
+(defn create-map [seed]
+  (.with-wall-at (rl.map.Map. 50 50) 10 20))
+
 (defn main []
   (let [frame (JFrame. "RL")
         textArea (TextArea. "Hubba!")
         view-rows 80
         view-cols 24
-        seed 4098]
+        seed 4098
+        map (create-map seed)
+        ]
     (doto frame
       (.setSize 640 480)
       (.setDefaultCloseOperation JFrame/EXIT_ON_CLOSE)
@@ -74,7 +84,7 @@
       (.setBackground (Color/BLACK))
       )
 
-    (display-grid textArea (map-view seed 100 100))
+    (display-grid textArea map)
 
     ))
 
