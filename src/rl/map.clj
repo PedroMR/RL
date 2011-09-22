@@ -7,7 +7,11 @@
   (walkable? [this x y]))
 (defprotocol MapEdit
   (with-wall-at [this x y])
-  (add-position-to-set [this set-index position]))
+  (add-position-to-set [this set-index position])
+  (add-room [this rand])
+  (randomize-rooms [this seed]))
+
+(defstruct position :x :y)
 
 ;(defstruct map-struct :width :height :walls)
 ;
@@ -41,6 +45,20 @@
     )]
       (prn new-map)
       new-map))
+  (add-room [this rand]
+    (with-wall-at
+      this
+      (rl.random/randomInt rand 0 (dec width))
+      (rl.random/randomInt rand 0 (dec height))
+      ))
+  (randomize-rooms [this seed]
+    (let [ rand (rl.random/with-seed seed)
+          num-rooms (rl.random/randomInt rand 3 5)
+          ]
+      (loop [this this rooms-left num-rooms rand rand]
+        (if (> rooms-left 0)
+          (recur (add-room this rand) (dec rooms-left) rand)
+          this))))
   )
 (let [map (with-wall-at (with-wall-at (Map. 50 50) 20 20) 21 20)]
   (deftest testBounds

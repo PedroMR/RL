@@ -4,6 +4,7 @@
     <list default="true" id="ba181e84-0d16-40fc-9f69-7735bbaca336" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/rl/main.clj" afterPath="$PROJECT_DIR$/src/rl/main.clj" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/rl/map.clj" afterPath="$PROJECT_DIR$/src/rl/map.clj" />
     </list>
     <ignored path="RL.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -65,7 +66,7 @@
       <file leaf-file-name="map.clj" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/rl/map.clj">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="16" column="0" selection-start="349" selection-end="349" vertical-scroll-proportion="0.0">
+            <state line="62" column="44" selection-start="1689" selection-end="1689" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -74,7 +75,7 @@
       <file leaf-file-name="main.clj" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/rl/main.clj">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="59" column="43" selection-start="1605" selection-end="1605" vertical-scroll-proportion="0.21296297">
+            <state line="15" column="25" selection-start="334" selection-end="334" vertical-scroll-proportion="0.21296297">
               <folding />
             </state>
           </provider>
@@ -425,7 +426,7 @@
     <option name="CHECK_COMMIT_MESSAGE_SPELLING" value="true" />
     <option name="DEFAULT_PATCH_EXTENSION" value="patch" />
     <option name="FORCE_NON_EMPTY_COMMENT" value="false" />
-    <option name="LAST_COMMIT_MESSAGE" value="Walls can be added! Walkability checked!" />
+    <option name="LAST_COMMIT_MESSAGE" value="Rendering map with walls" />
     <option name="MAKE_NEW_CHANGELIST_ACTIVE" value="true" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_FILES_UP_TO_DATE_BEFORE_COMMIT" value="false" />
@@ -445,6 +446,7 @@
     <MESSAGE value="Testing random" />
     <MESSAGE value="Bounds tested" />
     <MESSAGE value="Walls can be added! Walkability checked!" />
+    <MESSAGE value="Rendering map with walls" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -470,14 +472,14 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/rl/map.clj">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="16" column="0" selection-start="349" selection-end="349" vertical-scroll-proportion="0.0">
+        <state line="62" column="44" selection-start="1689" selection-end="1689" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/rl/main.clj">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="59" column="43" selection-start="1605" selection-end="1605" vertical-scroll-proportion="0.21296297">
+        <state line="15" column="25" selection-start="334" selection-end="334" vertical-scroll-proportion="0.21296297">
           <folding />
         </state>
       </provider>

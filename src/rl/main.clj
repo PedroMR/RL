@@ -4,17 +4,18 @@
     (java.awt TextArea Font Color)
     (java.awt.event ActionListener KeyListener KeyEvent))
   (:require
-    (rl random map))
-  (:use clojure.test))
+    (rl random))
+  (:use
+    clojure.test
+    rl.map))
 
-(defstruct position :x :y)
 (defstruct tile :position :wall)
 
 (defn handle-input [#^KeyEvent event]
   (println (.getKeyCode event) (.getKeyChar event)))
 
 (defn get-char-for-pos [mapView row col]
-  (if-not (.walkable? mapView row col)
+  (if-not (.walkable? mapView col row)
     "#"
     "."))
 
@@ -57,7 +58,7 @@
     (keyTyped [e])))
 
 (defn create-map [seed]
-  (.with-wall-at (rl.map.Map. 50 50) 10 20))
+  (.randomize-rooms (rl.map.Map. 100 50) seed))
 
 (defn main []
   (let [frame (JFrame. "RL")
